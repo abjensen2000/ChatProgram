@@ -17,9 +17,6 @@ app.use(session({
     saveUninitialized: true
 }));
 
-//----------
-//---------
-
 app.get('/', (req, res) => {
     const isLoggedIn = req.session.isLoggedIn;
     if (isLoggedIn === true) {

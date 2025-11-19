@@ -1,10 +1,6 @@
-import { log } from 'console';
 import { Router } from 'express'
 const userRouter = Router();
 import fs from 'fs/promises'
-
-
-
 
 userRouter.get('/', async (req, res) => {
     const users = await getUsers()
