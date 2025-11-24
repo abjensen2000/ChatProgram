@@ -2,19 +2,28 @@ import { Router } from 'express'
 const userRouter = Router();
 import fs from 'fs/promises'
 
-userRouter.get('/', async (req, res) => {
+
+
+userRouter.get('/api', async (req, res) => {
     const users = await getUsers()
     res.send(users)
 })
 
+userRouter.get('/', async (req, res) => {
+    const users = await getUsers()
+    res.render('usersPug', {users: users})
+})
+
 async function getUsers() {
     try {
-        let users = await fs.readFile('assets/data/users.txt', 'utf-8')
-        return JSON.parse(users);
+        const data = await fs.readFile('assets/data/users.json', 'utf-8')
+        const parsedData = JSON.parse(data)
+        return parsedData.users;
     } catch (err) {
         console.log(err);
     }
 }
+
 
 async function post(url, objekt) {
     const respons = await fetch(url, {
