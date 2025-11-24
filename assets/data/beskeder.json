@@ -1,0 +1,25 @@
+{
+    "beskeder": [
+        {
+            "id": "1",
+            "besked": "Hej min skibidi",
+            "oprettelsesDato": "2025-11-19T12:00:00.000Z",
+            "brugerId": "2",
+            "chatId": "1"
+        },
+        {
+            "id": "1",
+            "besked": "Sigma",
+            "oprettelsesDato": "2025-11-19T12:00:00.000Z",
+            "brugerId": "2",
+            "chatId": "3"
+        },
+        {
+            "id": "1",
+            "besked": "Fanum Tax",
+            "oprettelsesDato": "2025-11-19T12:00:00.000Z",
+            "brugerId": "2",
+            "chatId": "1"
+        }
+    ]
+}

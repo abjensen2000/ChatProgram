@@ -1,0 +1,11 @@
+{
+    "chats": [
+        {
+            "id": "1",
+            "navn": "Chat 1",
+            "oprettelsesDato": "2025-11-19T12:00:00.000Z",
+            "ejerBrugerId": "1",
+            "beskeder":[]
+        }
+    ]
+}

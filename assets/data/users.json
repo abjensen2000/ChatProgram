@@ -1,18 +1,21 @@
 {
     "users": [
         {
+            "id": "1",
             "brugernavn": "admin",
             "kodeord": "6640",
             "oprettelsesDato": "2025-11-19T12:00:00.000Z",
             "brugerNiveau": "3"
         },
         {
+            "id": "2",
             "brugernavn": "bruger1",
             "kodeord": "1234",
             "oprettelsesDato": "2025-11-19T12:00:00.000Z",
             "brugerNiveau": "2"
         },
         {
+            "id": "3",
             "brugernavn": "bruger2",
             "kodeord": "4321",
             "oprettelsesDato": "2025-11-19T12:00:00.000Z",

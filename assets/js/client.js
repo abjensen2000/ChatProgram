@@ -2,15 +2,14 @@ const brugernavn = document.querySelector('#username');
 const kodeord = document.querySelector('#password');
 const loginKnap = document.querySelector('#loginButton');
 
-loginKnap.onclick = () => {
-    const data = post('/login', {
+loginKnap.onclick = async () => {
+    const data = await post('/login', {
         brugernavn: brugernavn.value,
-        kodeord: kodeord.value, 
+        kodeord: kodeord.value,
     })
-    if(data.ok == true) {
-        a
+    if (data.ok == true) {
+        window.location.href = "/chats"
     }
-    console.log("Hej");
 }
 
 

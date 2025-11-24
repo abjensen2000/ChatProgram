@@ -2,20 +2,24 @@ import express from 'express'
 import session from 'express-session'
 import {chatRouter} from './routes/chats.js'
 import {userRouter} from './routes/users.js'
-
+import {loginRouter} from './routes/login.js'
 
 const app = express();
 app.set('view engine', 'pug');
 app.use(express.static('assets'));
 app.use(express.json());
-app.use('/chats', chatRouter);
-app.use('/users', userRouter);
 
 app.use(session({
     secret: 'dinmor',
     resave: true,
     saveUninitialized: true
 }));
+
+app.use('/chats', chatRouter);
+app.use('/users', userRouter);
+app.use('/login', loginRouter);
+
+
 
 app.get('/', (req, res) => {
     const isLoggedIn = req.session.isLoggedIn;
@@ -26,22 +30,7 @@ app.get('/', (req, res) => {
     }
 })
 
-app.get('/login', (req, res) => {
-    const isLoggedIn = req.session.isLoggedIn;
-    if (isLoggedIn === true) {
-        res.redirect('chats')
-    } else {
-        res.render('login')
-    }
-})
 
-app.post('/login', (req, res) => {
-    for (const user of users) {
-        if (user.brugernavn == req.brugernavn && user.kodeord == req.kodeord) {
-            res.status(201).send({ ok: true })
-        }
-    }
-})
 
 
 
