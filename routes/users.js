@@ -10,7 +10,11 @@ userRouter.get('/api', async (req, res) => {
 userRouter.get('/', async (req, res) => {
     const data = await getData("users.json")
     console.log(data)
-    res.render('usersPug', {users: data.users})
+    if (req.session.user.brugerNiveau == 3) {
+        res.render('usersPug', { users: data.users })
+    } else {
+        res.status(404).send('Du er ikke stærk nok')
+    }
 })
 
 

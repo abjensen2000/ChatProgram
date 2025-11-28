@@ -13,15 +13,15 @@ loginRouter.get('/', (req, res) => {
 
 loginRouter.post('/', async (req, res) => {
     const data = await getData('users.json')
+    console.log(req.body.brugernavn)
     for (const user of data.users) {
         if (user.brugernavn == req.body.brugernavn && user.kodeord == req.body.kodeord) {
             req.session.isLoggedIn = true;
+            req.session.currentUser = user;
             console.log('Nice')
-            res.status(201).send({ ok: true })
+            res.status(201).send({ok: true })
         }
-        else {
-            console.log('Forkert brugernavn eller kode')
-        }
+        console.log('Forkert')
     }
 })
 

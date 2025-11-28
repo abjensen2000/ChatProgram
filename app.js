@@ -23,6 +23,8 @@ app.use('/login', loginRouter);
 
 app.get('/', (req, res) => {
     const isLoggedIn = req.session.isLoggedIn;
+    //const userId = req.session.userId;
+    //const chatId = req.session.chatId;
     if (isLoggedIn === true) {
         res.redirect('/chats')
     } else {

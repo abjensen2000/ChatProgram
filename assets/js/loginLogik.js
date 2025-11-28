@@ -2,14 +2,6 @@ const brugernavn = document.querySelector('#username');
 const kodeord = document.querySelector('#password');
 const loginKnap = document.querySelector('#loginButton');
 
-const chatInput = document.querySelector('#chatInput');
-
-document.addEventListener("keydown", (event) => {
-    if (event.key === "Enter"){
-        
-    }
-})
-
 loginKnap.onclick = async () => {
     const data = await post('/login', {
         brugernavn: brugernavn.value,

@@ -1,25 +1,81 @@
 {
-    "beskeder": [
-        {
-            "id": "1",
-            "besked": "Hej min skibidi",
-            "oprettelsesDato": "2025-11-19T12:00:00.000Z",
-            "brugerId": "2",
-            "chatId": "1"
-        },
-        {
-            "id": "1",
-            "besked": "Sigma",
-            "oprettelsesDato": "2025-11-19T12:00:00.000Z",
-            "brugerId": "2",
-            "chatId": "3"
-        },
-        {
-            "id": "1",
-            "besked": "Fanum Tax",
-            "oprettelsesDato": "2025-11-19T12:00:00.000Z",
-            "brugerId": "2",
-            "chatId": "1"
-        }
-    ]
+  "beskeder": [
+    {
+      "id": "1",
+      "besked": "Hej min skibidi",
+      "oprettelsesDato": "2025-11-19T12:00:00.000Z",
+      "brugerId": "2",
+      "chatId": "1"
+    },
+    {
+      "id": "2",
+      "besked": "Sigma",
+      "oprettelsesDato": "2025-11-19T12:00:00.000Z",
+      "brugerId": "2",
+      "chatId": "3"
+    },
+    {
+      "id": "3",
+      "besked": "Fanum Tax",
+      "oprettelsesDato": "2025-11-19T12:00:00.000Z",
+      "brugerId": "2",
+      "chatId": "1"
+    },
+    {
+      "id": 0,
+      "besked": "hej",
+      "oprettelsesDato": "skibidi",
+      "brugerId": "1",
+      "chatId": "1"
+    },
+    {
+      "id": 0,
+      "besked": "hej",
+      "oprettelsesDato": "skibidi",
+      "brugerId": "1",
+      "chatId": "1"
+    },
+    {
+      "id": 0,
+      "besked": "Jeg er her",
+      "oprettelsesDato": "skibidi",
+      "brugerId": "1",
+      "chatId": "1"
+    },
+    {
+      "id": 0,
+      "besked": "Halløjjj",
+      "oprettelsesDato": "skibidi",
+      "brugerId": "1",
+      "chatId": "2"
+    },
+    {
+      "id": 0,
+      "besked": "Halløj",
+      "oprettelsesDato": "skibidi",
+      "brugerId": "1",
+      "chatId": "1"
+    },
+    {
+      "id": 0,
+      "besked": "Nu",
+      "oprettelsesDato": "skibidi",
+      "brugerId": "1",
+      "chatId": "1"
+    },
+    {
+      "id": 0,
+      "besked": "Skiv",
+      "oprettelsesDato": "skibidi",
+      "brugerId": "1",
+      "chatId": "1"
+    },
+    {
+      "id": 0,
+      "besked": "hej",
+      "oprettelsesDato": "skibidi",
+      "brugerId": "1",
+      "chatId": "1"
+    }
+  ]
 }

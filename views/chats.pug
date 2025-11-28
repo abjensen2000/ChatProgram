@@ -1,6 +1,9 @@
-include includes/header 
-ul
-    each chat in chats
-        li 
-            a(href= `/chats/${chat.id}`)= chat.navn
+include includes/header
+body
+    ul
+        each chat in chats
+            li 
+                a(href= `/chats/${chat.id}`)= chat.navn
 
+    if currentUserLevel == 3
+        include usersPug
