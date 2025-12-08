@@ -1,7 +1,7 @@
 import express from 'express'
 import session from 'express-session'
 import { chatRouter } from './routes/chats.js'
-import { userRouter as users } from './routes/users.js'
+import { userRouter } from './routes/users.js'
 import { opretRouter } from './opretBruger.js'
 
 const app = express();
@@ -11,11 +11,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('assets'));
 
+app.use(session({ secret: 'dinmor', resave: true, saveUninitialized: true }));
+
 app.use('/chats', chatRouter);
-app.use('/users', users);
+app.use('/users', userRouter);
 app.use('/opretBruger', opretRouter);
 
-app.use(session({ secret: 'dinmor', resave: true, saveUninitialized: true }));
+
 
 app.get('/', (req, res) => {
     const isLoggedIn = req.session.isLoggedIn;

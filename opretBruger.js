@@ -3,7 +3,16 @@
 import { Router } from "express";
 import fs from 'fs/promises';
 
+import path from "path";
+import { fileURLToPath } from "url";
+
 const opretRouter = Router();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const filePath = path.join(__dirname, "assets", "data", "users.json");
+
 
 opretRouter.get('/', (req, res) => {
     res.render('opretBruger');
@@ -15,7 +24,7 @@ opretRouter.post('/', async (req, res) => {
     // Læs eksisterende brugere
     let db;
     try {
-        db = JSON.parse(await fs.readFile('/assets/data/users.json', 'utf-8'));
+        db = JSON.parse(await fs.readFile(filePath, 'utf-8'));
     } catch {
         db = { users: [] }; // fallback hvis filen ikke findes
     }
@@ -29,7 +38,6 @@ opretRouter.post('/', async (req, res) => {
 
     // Opret ny bruger med alle nødvendige felter
     const nyBruger = {
-        id : Id,
         brugernavn: brugernavn,
         kodeord: password,
         oprettelsesDato: new Date().toISOString(),

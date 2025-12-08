@@ -1,6 +1,6 @@
 const navn = document.querySelector('#nytBrugernavn');
 const password = document.querySelector('#nytPassword');
-const password_Gentaget = document.querySelector('#nytPasswordGentaget');
+const password_Gentaget = document.querySelector('#nytPassword_gentaget');
 const registrer = document.querySelector('#registrerKnap');
 
 
