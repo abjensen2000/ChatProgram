@@ -33,12 +33,6 @@ app.get('/login', (req, res) => {
     } else { res.render('login') }
 })
 
-app.post('/login', (req, res) => {
-    for (const user of users) {
-        if (user.brugernavn == req.brugernavn && user.kodeord == req.kodeord) {
-            res.status(201).send({ ok: true })
-        }
-    }
-})
+
 
 app.listen(8080, (error) => console.log('Du er forbundet til chatprogram på port 8080'));
