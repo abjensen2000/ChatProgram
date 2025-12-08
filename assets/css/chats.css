@@ -1,0 +1,6 @@
+.chatEntry {
+    border-bottom: 2px solid blue; /* rød streg under hvert li */
+    padding: 5px 0; /* lidt afstand over/under */
+}
+
+

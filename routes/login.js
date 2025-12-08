@@ -1,6 +1,6 @@
 import { Router } from 'express'
 const loginRouter = Router();
-import { getData } from './get.js';
+import { getData } from './get&post.js';
 
 loginRouter.get('/', (req, res) => {
     const isLoggedIn = req.session.isLoggedIn;

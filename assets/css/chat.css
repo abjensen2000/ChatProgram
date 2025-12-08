@@ -1,0 +1,9 @@
+.beskedEntry {
+    border-bottom: 2px solid red; /* rød streg under hvert li */
+    padding: 5px 0; /* lidt afstand over/under */
+
+}
+
+.body{
+    vertical-align: middle;
+}

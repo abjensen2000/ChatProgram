@@ -1,6 +1,6 @@
 import { Router } from 'express'
 const userRouter = Router();
-import { getData } from './get.js';
+import { getData } from './get&post.js';
 
 userRouter.get('/api', async (req, res) => {
     const data = await getData("users.json")

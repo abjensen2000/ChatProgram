@@ -1,39 +1,79 @@
 import { Router } from 'express'
 const chatRouter = Router();
-import { getData } from './get.js';
+import { getData } from './get&post.js';
 import fs from 'fs/promises'
+import { json } from 'stream/consumers';
 
+chatRouter.post('/logUd', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send({ ok: false, message: "Kunne ikke logge ud" });
+        }
+        res.status(201).send({ ok: true });
+    });
+});
 
-chatRouter.get('/', async (req, res) => {
-    const userData = await getData("users.json")
-    const currentUserLevel = req.session.currentUser.brugerNiveau
+chatRouter.delete('/', async (req, res) => {
+    const chatId = req.body.chatId
+    console.log(chatId)
+    const parsedChatsData = await getData("chats.json")
 
-    req.session.beskedId = 0;
-    const isLoggedIn = req.session.isLoggedIn;
-    if (isLoggedIn == true) {
-        const data = await getData("chats.json")
-        res.render('chats', { chats: data.chats, userData: userData, currentUserLevel: currentUserLevel})
+    for (let i = 0; i < parsedChatsData.chats.length; i++) {
+        if (parsedChatsData.chats[i].id == chatId) {
+            parsedChatsData.chats.splice(i, 1);
+            break;
+        }
     }
-    else {
-        res.redirect('/login')
-    }
+    await fs.writeFile('assets/data/chats.json', JSON.stringify(parsedChatsData, null, 2))
+    res.send({ ok: true })
+
 })
 
-chatRouter.post('/', async (req, res) => {
+chatRouter.post('/opretChat', async (req, res) => {
+    const chatNavn = req.body.chatNavn
+    console.log(chatNavn)
+    const parsedChatsData = await getData("chats.json")
+    console.log(JSON.stringify(parsedChatsData.chats))
+
+    let maxId = 0;
+    for (const chat of parsedChatsData.chats) {
+        maxId++
+    }
+
+    const newChatId = maxId + 1
+
+    const chat = {
+        id: newChatId,
+        navn: chatNavn,
+        oprettelsesDato: 'skibidi',
+        ejerBrugerId: req.session.currentUser.userId,
+        beskeder: []
+    }
+    console.log(JSON.stringify(chat))
+    console.log('--------------------------------------------------------------------')
+    parsedChatsData.chats.push(chat)
+    console.log(JSON.stringify(parsedChatsData.chats));
+    await fs.writeFile('assets/data/chats.json', JSON.stringify(parsedChatsData, null, 2));
+    res.status(201).send({ ok: true, chatNavn: req.body.chatNavn })
+})
+
+chatRouter.post('/sendChat', async (req, res) => {
     const parsedBeskedData = await getData("beskeder.json")
     console.log(JSON.stringify(parsedBeskedData.beskeder))
-    const maxId = 0;
+
+    let maxId = 0;
     for (const besked of parsedBeskedData.beskeder) {
-        if (besked.beskedId > maxId) {
-            maxId = besked.beskedId;
-        }
-        req.session.beskedId = maxId;
+        maxId++
     }
+
+    const newBeskedId = maxId + 1
+
     const besked = {
-        id: req.session.beskedId,
+        id: newBeskedId,
         besked: req.body.data,
         oprettelsesDato: 'skibidi',
-        brugerId: req.session.user.id,
+        brugerId: req.session.currentUser.id,
         chatId: req.session.chatId
     }
     console.log(JSON.stringify(besked))
@@ -51,19 +91,35 @@ chatRouter.get('/:id', async (req, res) => {
     const beskedData = await getData("beskeder.json")
     const chatData = await getData("chats.json")
     for (const chat of chatData.chats) {
-        req.session.beskedId++;
         if (chat.id == chatId) {
             for (const besked of beskedData.beskeder) {
+                req.session.beskedId++;
                 if (besked.chatId == chat.id) {
                     chat.beskeder.push(JSON.stringify({ brugerId: besked.brugerId, besked: besked.besked }));
                 }
             }
-            res.render('chat', { chat })
+            console.log(chat.beskeder)
+            res.render('chat', {chat, beskeder: chat.beskeder, cssFil:'chat'}) //TODO gør chatsne flotte
         } else {
             console.log('Chat findes ikke')
         }
     }
 
+})
+
+chatRouter.get('/', async (req, res) => {
+    const userData = await getData("users.json")
+    const currentUserLevel = req.session.currentUser.brugerNiveau
+
+    req.session.beskedId = 0;
+    const isLoggedIn = req.session.isLoggedIn;
+    if (isLoggedIn == true) {
+        const data = await getData("chats.json")
+        res.render('chats', { cssFil: 'chats', chats: data.chats, userData: userData, currentUserLevel: currentUserLevel, currentUserId: req.session.currentUser.id })
+    }
+    else {
+        res.redirect('/login')
+    }
 })
 
 export { chatRouter }

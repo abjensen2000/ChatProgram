@@ -1,8 +1,8 @@
 include includes/header
 script(src='/js/chatLogik.js' defer)
 body 
-    ul 
-    each besked in chat.beskeder
-        li= besked
+    ul.body
+        each besked in chat.beskeder
+            li.beskedEntry= besked
     input#chatInput(type="text")
     input#sendChatKnap(type="button", value="Send Chat")
