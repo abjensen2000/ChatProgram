@@ -2,22 +2,15 @@ const brugernavn = document.querySelector('#username');
 const kodeord = document.querySelector('#password');
 const loginKnap = document.querySelector('#loginButton');
 
-const chatInput = document.querySelector('#chatInput');
-
-document.addEventListener("keydown", (event) => {
-    if (event.key === "Enter"){
-        
-    }
-})
-
-loginKnap.onclick = async () => {
-    const data = await post('/login', {
+loginKnap.onclick = () => {
+    const data = post('/login', {
         brugernavn: brugernavn.value,
-        kodeord: kodeord.value,
+        kodeord: kodeord.value, 
     })
-    if (data.ok == true) {
-        window.location.href = "/chats"
+    if(data.ok == true) {
+        a
     }
+    console.log("Hej");
 }
 
 

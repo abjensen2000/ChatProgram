@@ -13,7 +13,4 @@ userRouter.get('/', async (req, res) => {
     res.render('usersPug', {users: data.users})
 })
 
-
-
-
 export { userRouter }
