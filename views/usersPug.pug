@@ -1,3 +1,4 @@
 ul 
-    each user in userData.users
-        li= user.brugernavn
+    each user in users
+        if user.brugerNiveau != 3
+            li= user.brugernavn + ': ' + user.brugerNiveau

@@ -1,20 +1,21 @@
 include includes/header
 script(src='/js/chatsLogik.js' defer)
 body
-    ul
-        each chat in chats
-            li.chatEntry 
-                a(href= `/chats/${chat.id}`)= chat.navn
-                if currentUserLevel == 3
-                    input.sletChatKnap(type="button", value="Slet Chat" data-chat-id = chat.id)
-                else if currentUserLevel == 2 && chat.ejerBrugerId == currentUserId
-                    input.sletChatKnap(type="button", value="Slet Chat" data-chat-id = chat.id)
+    div#container
+        ul
+            each chat in chats
+                li.chatEntry 
+                    a(href= `/chats/${chat.id}`)= chat.navn
+                    if currentUserLevel == 3
+                        input.sletChatKnap(type="button", value="Slet Chat" data-chat-id = chat.id)
+                    else if currentUserLevel == 2 && chat.ejerBrugerId == currentUserId
+                        input.sletChatKnap(type="button", value="Slet Chat" data-chat-id = chat.id)
 
 
-    if currentUserLevel >= 2
-        include opretChat
+        if currentUserLevel >= 2
+            include opretChat
 
-    if currentUserLevel == 3
-        include usersPug
-    input#logUdKnap(type="button", value="Log ud")
+        if currentUserLevel == 3
+            include usersPug
+        input#logUdKnap(type="button", value="Log ud")
 

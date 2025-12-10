@@ -1,9 +1,15 @@
-.beskedEntry {
-    border-bottom: 2px solid red; /* rød streg under hvert li */
-    padding: 5px 0; /* lidt afstand over/under */
-
+.body {
+    font-family: Arial
 }
 
-.body{
-    vertical-align: middle;
+ul{
+    list-style: none;
+}
+
+.beskedEntry {
+    margin: 5px
+}
+
+input {
+    padding: 5px
 }

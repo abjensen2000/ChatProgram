@@ -2,7 +2,7 @@ const chatInput = document.querySelector('#chatInput');
 const sendChatKnap = document.querySelector('#sendChatKnap')
 
 sendChatKnap.onclick = async () => {
-    const data = await post('/chats/sendChat', { data: chatInput.value})
+    const data = await post('/chats/sendChat', { data: chatInput.value })
     if (data.ok == true) {
         console.log("Besked sendt")
         window.location.reload();

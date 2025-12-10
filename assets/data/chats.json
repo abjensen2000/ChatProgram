@@ -5,6 +5,12 @@
       "navn": "chat 1",
       "oprettelsesDato": "skibidi",
       "beskeder": []
+    },
+    {
+      "id": 2,
+      "navn": "chat 2",
+      "oprettelsesDato": "skibidi",
+      "beskeder": []
     }
   ]
 }

@@ -1,6 +1,19 @@
-.chatEntry {
-    border-bottom: 2px solid blue; /* rød streg under hvert li */
-    padding: 5px 0; /* lidt afstand over/under */
+body {
+    font-family: Arial
 }
 
+ul {
+    list-style: none;
+}
 
+.chatEntry {
+    margin: 5px;
+}
+
+input {
+    padding: 5px
+}
+
+.sletChatKnap{
+    background-color: red;
+}

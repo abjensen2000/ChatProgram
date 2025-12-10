@@ -1,0 +1,13 @@
+
+
+div{
+    text-align: center;
+    grid-area: auto, auto;
+}
+
+body{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    background-color: gray;
+    grid-template-rows: repeat(1, 1fr);
+}

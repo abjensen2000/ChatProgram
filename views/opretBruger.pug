@@ -1,0 +1,22 @@
+include includes/header 
+script(src='/js/client.js' defer)
+body
+    h1 Her kan du oprette dig som bruger! 
+
+    h2 Indtast dit ønskede brugernavn! 
+    input#nytBrugernavn(type="text", name='brugerMavn', placeholder='Bruger Navn') 
+
+    h2 Indtast din ønskede password 
+    input#nytPassword(type="password", name='password_1', placeholder='Nyt password') 
+
+    h2 Gentag password 
+    input#nytPassword_gentaget(type="password", name='password_2', placeholder='Gentag password') 
+
+    h2 
+    button#registrerKnap Opret 
+
+    h2 
+    button#tilbageTilForsiden Tilbage til forsiden. 
+
+    script(src="/js/knapLogik_tilbageTilLoginPage.js")
+    script(src="/js/knapLogik_registrerBruger.js")

@@ -3,6 +3,7 @@ import session from 'express-session'
 import {chatRouter} from './routes/chats.js'
 import {userRouter} from './routes/users.js'
 import {loginRouter} from './routes/login.js'
+import { opretRouter } from './routes/opretBruger.js'
 
 const app = express();
 app.set('view engine', 'pug');
@@ -18,6 +19,7 @@ app.use(session({
 app.use('/chats', chatRouter);
 app.use('/users', userRouter);
 app.use('/login', loginRouter);
+app.use('/opretBruger', opretRouter)
 
 
 

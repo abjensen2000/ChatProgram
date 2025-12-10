@@ -70,7 +70,7 @@ chatRouter.post('/sendChat', async (req, res) => {
     const newBeskedId = maxId + 1
 
     const besked = {
-        id: newBeskedId,
+        id: newBeskedId.toString(),
         besked: req.body.data,
         oprettelsesDato: 'skibidi',
         brugerId: req.session.currentUser.id,
@@ -95,7 +95,7 @@ chatRouter.get('/:id', async (req, res) => {
     for (const chat of chatData.chats) {
         if (chat.id == chatId) {
             for (const besked of beskedData.beskeder) {
-                let nyBesked 
+                let nyBesked
                 let beskedTilString = null
                 let userTilString = null
                 req.session.beskedId++;
@@ -120,6 +120,15 @@ chatRouter.get('/:id', async (req, res) => {
 
 })
 
+chatRouter.get('/beskeder/:besked', async (req, res) => {
+    const beskedData = await getData("beskeder.json")
+    for (const besked of beskedData.beskeder) {
+        if (req.params.besked == besked.id) {
+            res.render('specifikChat', besked)
+        }
+    }
+})
+
 chatRouter.get('/', async (req, res) => {
     const userData = await getData("users.json")
     const currentUserLevel = req.session.currentUser.brugerNiveau
@@ -128,7 +137,7 @@ chatRouter.get('/', async (req, res) => {
     const isLoggedIn = req.session.isLoggedIn;
     if (isLoggedIn == true) {
         const data = await getData("chats.json")
-        res.render('chats', { cssFil: 'chats', chats: data.chats, userData: userData, currentUserLevel: currentUserLevel, currentUserId: req.session.currentUser.id })
+        res.render('chats', { cssFil: 'chats', chats: data.chats, users: userData.users, currentUserLevel: currentUserLevel, currentUserId: req.session.currentUser.id })
     }
     else {
         res.redirect('/login')
