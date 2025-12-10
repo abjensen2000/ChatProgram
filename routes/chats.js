@@ -90,16 +90,29 @@ chatRouter.get('/:id', async (req, res) => {
     req.session.chatId = chatId;
     const beskedData = await getData("beskeder.json")
     const chatData = await getData("chats.json")
+    const userData = await getData("users.json")
+    let beskedStringsTilPug = []
     for (const chat of chatData.chats) {
         if (chat.id == chatId) {
             for (const besked of beskedData.beskeder) {
+                let nyBesked 
+                let beskedTilString = null
+                let userTilString = null
                 req.session.beskedId++;
                 if (besked.chatId == chat.id) {
+                    beskedTilString = besked.besked
                     chat.beskeder.push(JSON.stringify({ brugerId: besked.brugerId, besked: besked.besked }));
+                    for (const user of userData.users) {
+                        if (user.id == besked.brugerId) {
+                            userTilString = user.brugernavn
+                            nyBesked = userTilString + ": " + beskedTilString
+                            beskedStringsTilPug.push(nyBesked)
+                        }
+                    }
+
                 }
             }
-            console.log(chat.beskeder)
-            res.render('chat', {chat, beskeder: chat.beskeder, cssFil:'chat'}) //TODO gør chatsne flotte
+            res.render('chat', { beskeder: beskedStringsTilPug, cssFil: 'chat' }) //TODO gør chatsne flotte
         } else {
             console.log('Chat findes ikke')
         }
